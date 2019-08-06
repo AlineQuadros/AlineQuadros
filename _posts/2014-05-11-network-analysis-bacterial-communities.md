@@ -4,7 +4,7 @@ title:  "Fake-it-til-you-make-it in woodlice"
 author: Aline
 categories: [ ecology ]
 image: assets/images/mangrove.jpg
-featured: true
+featured: false
 hidden: true
 beforetoc: "NLP is finally giving scientists the possibility to connect precious information that is scattered over hundreds of  publications"
 toc: true

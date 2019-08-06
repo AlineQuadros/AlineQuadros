@@ -7,7 +7,7 @@ tags: [ datasets, unstructured data ]
 image: assets/images/data_scientist_female.jpg
 description: "description "
 featured: true
-hidden: true
+hidden: false
 beforetoc: "How I combined published and unpublished data into a structured dataset"
 toc: true
 ---

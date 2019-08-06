@@ -4,9 +4,9 @@ title:  "time-series analysis of heartbeats"
 author: Aline
 categories: [ data-science ]
 image: assets/images/mangrove.jpg
-featured: true
+featured: false
 hidden: true
-beforetoc: ""
+beforetoc: "beforetoc"
 toc: true
 ---
 

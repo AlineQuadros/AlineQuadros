@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Modelling the biomass production of mangrove forests"
+title:  "Modelling biomass production of mangrove forests with PLS-R and PCA"
 author: Aline
 categories: [ mangroves, data-science, ecology ]
 image: assets/images/mangrovesfranciscoblancosstock.jpg
 featured: true
-hidden: true
+hidden: false
 beforetoc: "How a combination of PLS-R and PCA helped me to predict how biomass production might change depending on the vegetation features"
 toc: true
 ---

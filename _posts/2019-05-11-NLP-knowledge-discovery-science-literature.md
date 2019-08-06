@@ -5,7 +5,7 @@ author: Aline
 categories: [ NLP, data-science ]
 image: assets/images/mangrove.jpg
 featured: true
-hidden: true
+hidden: false
 beforetoc: "NLP is finally giving scientists the possibility to connect precious information that is scattered over hundreds of  publications"
 toc: true
 ---

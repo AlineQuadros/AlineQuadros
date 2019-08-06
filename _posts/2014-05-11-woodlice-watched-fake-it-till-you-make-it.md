@@ -4,7 +4,7 @@ title:  "Fake-it-til-you-make-it in woodlice"
 author: Aline
 categories: [ ecology ]
 image: assets/images/woodlice.jpg
-featured: true
+featured: false
 hidden: true
 beforetoc: "Woodlice and many other invertebrates have perfected the art of Fake it til you make it to deceive predators"
 toc: true
