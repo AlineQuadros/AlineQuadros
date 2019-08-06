@@ -4,6 +4,8 @@ title:  "Tracking environmental changes is easy with PCA"
 author: Aline
 categories: [ data-science, dataviz ]
 image: assets/images/HK-waters.jpg
+featured: false
+hidden: false
 beforetoc: "The health or quality of an environment is accessed by the monitoring or multiple features. PCA can help to detect trends and visualize them "
 toc: true
 ---

@@ -3,9 +3,9 @@ layout: post
 title:  "time-series analysis of heartbeats"
 author: Aline
 categories: [ data-science ]
-image: assets/images/PB107651.JPG
+image: assets/images/crab-tree.jpg
 featured: false
-hidden: true
+hidden: false
 beforetoc: "beforetoc"
 toc: true
 ---

@@ -5,7 +5,7 @@ author: Aline
 categories: [ NLP, data-science ]
 image: assets/images/mountains-austria.jpg
 featured: false
-hidden: true
+hidden: false
 beforetoc: "Predicting effects of global warming on the mountains of Austria"
 toc: true
 ---

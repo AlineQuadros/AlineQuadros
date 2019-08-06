@@ -3,9 +3,9 @@ layout: post
 title:  "Network analysis of bacterial communities"
 author: Aline
 categories: [ ecology ]
-image: assets/images/rice-network.jpg
+image: assets/images/rice-network.png
 featured: false
-hidden: true
+hidden: false
 beforetoc: ""
 toc: true
 ---

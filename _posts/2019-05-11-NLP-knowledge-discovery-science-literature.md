@@ -3,7 +3,7 @@ layout: post
 title:  "Using NLP and d"
 author: Aline
 categories: [ NLP, data-science ]
-image: assets/images/mangrove.jpg
+image: assets/images/nlp.jpg
 featured: true
 hidden: false
 beforetoc: "NLP is finally giving scientists the possibility to connect precious information that is scattered over hundreds of  publications"
