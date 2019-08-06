@@ -2,9 +2,9 @@
 layout: post
 title:  "Tracking environmental changes is easy with PCA"
 author: Aline
-categories: [ Data-science, dataviz ]
-image: assets/images/3.jpg
-beforetoc: "The health or quality of an environment is "
+categories: [ data-science, dataviz ]
+image: assets/images/HK-waters.jpg
+beforetoc: "The health or quality of an environment is accessed by the monitoring or multiple features. PCA can help to detect trends and visualize them "
 toc: true
 ---
 

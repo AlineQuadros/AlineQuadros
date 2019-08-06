@@ -1,42 +1,23 @@
 ---
 layout: post
-title:  "Using NLP and d"
+title:  "Woodlice featured in the Global Soil Biodiversity Atlas"
 author: Aline
-categories: [ NLP, data-science ]
-image: assets/images/mangrove.jpg
+categories: [ ecology, woodlice ]
+image: assets/images/soil_biodiversity2.jpg
 featured: false
 hidden: true
-beforetoc: "NLP is finally giving scientists the possibility to connect precious information that is scattered over hundreds of  publications"
+beforetoc: "The first Global Soil Biodiversity Atlas is out! Tons of illustrations and precious info on these amazing creatures"
 toc: true
 ---
 
-I am absolutely **in love with NLP**, and I'm excited to see how this field is progressing fast.
-Being a scientist,
+Well,
+Together with Martin Zimmer, we
+The entire publication is available online and _for free_ <a href="https://ec.europa.eu/jrc/en/publication/global-soil-biodiversity-atlas">here</a>
 
-This small project was my first attempt to explore NLP and see how much knowledge I could
-Because I was working on the Mangrove Ecology at the time, it was natural to try to apply this technique to understand more of mangroves. Nonetheless, the procedures I'll describe below can be used to investigate many other subjects.
+If you just wanna read my section on woodlice, just download this <a href="assets/files/woodlice_atlas.pdf">file</a>
 
-The question was simple:
+Here's the Atlas' *abstract*:
 
-> What aspects of mangrove ecology have been studied and how has it changed over the years?
+> Soils provide numerous ecosystem services. Most people do not know that the key drivers of soil ecosystems are the living organisms within the soil. Soils may be home to over one fourth of all living species on Earth, with a significant part not yet characterized. The first Global Soil Biodiversity Atlas is a product of the Global Soil Biodiversity Initiative. It aims at raising awareness of the importance and beauty of soil biodiversity among the general public and policy makers. Furthermore, it highlights the need to increase efforts to develop a global assessment of soil biodiversity. Data on distribution of soil-dwelling organisms are often difficult to combine. The atlas represents an attempt to create a unique network among soil biodiversity scientists. Such an effort may help in reaching the level of attention that research on soil biodiversity deserves. With contributions from over 80 experts in soil biodiversity from all over the world, and over 170 pages, the atlas will also display distribution maps of the main soil organisms. Furthermore, an exceptionally high number of images will allow non-specialists to get in touch with this fascinating and mysterious world.
 
-* First step was getting the data. My sources where three major databases of scientific literature: **PubMED**, **Web of knowledge**, and **Scopus**. Why was it necessary to use three databases? Well, each database indexes a diferent set of journals and publishers, so even if you use the exact same keywords you'll get a diferent set of publications. There's a lot of overlap, yes, but  using a combination of keywords, I obtained the titles and abstracts
-
-* Second step, you know, data wrangling: identification of duplicates, normalization of charsets, . The final dataset looks like this:
-
-> The oldest publication about mangrove *ecology* that I could find was ...
-
-* Third step: build a corpora (including text normalization, stemming)
-
-* Fourth step is _Where the fun starts_: Find out the most common used word in the titles.
-Because I had the publication year of each publication (I grouped them per decade), I was able to detect trends . I assumed that this list would provide a good overview of how the interest on mangroves has been changing along time. The results look like this:
-
-
-
-> Disclaimer: I only analysed publications in English, which is a pitty. Most mangroves of the world occur in non-English speaking  countries (like Brazil ), so there's a lot published in the researcher's country language
-
-
-
-
-
- <span class="spoiler">I just love NLP</span>
+ <span class="spoiler">I hope you enjoy soil biodiversity</span>
