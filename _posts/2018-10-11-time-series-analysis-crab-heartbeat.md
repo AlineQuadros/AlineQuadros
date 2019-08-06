@@ -3,7 +3,7 @@ layout: post
 title:  "time-series analysis of heartbeats"
 author: Aline
 categories: [ data-science ]
-image: assets/images/mangrove.jpg
+image: assets/images/PB107651.JPG
 featured: false
 hidden: true
 beforetoc: "beforetoc"
@@ -11,10 +11,10 @@ toc: true
 ---
 
 
-Scientists worldwide record the heartbeats of all animals you can think of. From the largest to the tiniest.
+Scientists worldwide record and analyze the heartbeats of all animals you can think of. From the largest to the tiniest. In the same way your doctor can learn a lot from your health by monitoring your hear frequency, scientists investigate the behavior and physiology of animal too.
 
 A couple years ago I collaborated on a project where scientists wanted to see how crabs were being affected by
-They used a system called Picoscope to, by attaching small sensors to the crabs' back (_fun fact_ the crab's heart is not located on its "chest" but rather on its "back"). The crabs are then confined to a space where one or more environmental features are being manipulated. In this case, it was the water temperature.
+They used a system called Picoscope to get the crab's heartbeats by attaching small sensors to the crabs' back (_fun fact_ the crab's heart is not located on its "chest" but rather on its "back"). The crabs were then confined to a space where one or more environmental features are being manipulated. In this case, it was the water temperature.
 
 The experiment can be repeated with diferent individuals, different species, under n diferent conditions, depending on what the *research question* is.
 

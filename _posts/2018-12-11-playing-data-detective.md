@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "Playing data detective: "
+title:  "Playing the data detective"
 author: Aline
 categories: [ Data-science ]
 tags: [ datasets, unstructured data ]
 image: assets/images/data_scientist_female.jpg
 description: "description "
-featured: true
+featured: false
 hidden: false
 beforetoc: "How I combined published and unpublished data into a structured dataset"
 toc: true
