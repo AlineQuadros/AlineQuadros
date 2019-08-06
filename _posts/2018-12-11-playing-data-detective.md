@@ -1,18 +1,20 @@
 ---
 layout: post
 title:  "Playing data detective: "
-author: john
+author: Aline
 categories: [ Data-science ]
 tags: [ datasets, unstructured data ]
-image: assets/images/11.jpg
-description: "How I combined published and unpublished data into a structured dataset "
+image: assets/images/data_scientist_female.jpg
+description: "description "
 featured: true
 hidden: true
+beforetoc: "How I combined published and unpublished data into a structured dataset"
+toc: true
 ---
 
 
-Back in 2017, when I was a research assistant  I spared a few months 
+Back in 2017, when I was a research assistant  I've spent a few months
 
-But, why not take this to the next level? What about analysing 90000 publications, instead of 90? Inspired by the recente advances of Natural language processing, I .
+The trick is to carefully go through the dataset
 
-
+Well, I did this manually and I am very proud of this small contribution. But, why not take this to the next level? What about analysing 90000 publications, instead of 90? Inspired by the recent advances of Natural language processing (NLP), I .

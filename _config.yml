@@ -15,10 +15,10 @@ permalink: /:title/
 authors:
   Aline:
     name: Aline
-    display_name: Aline    
+    display_name: Aline
     avatar: 'assets/images/avatar.png'
     gravatar: b1cc14991db7a456fcd761680bbc8f81
-    email: wowthemesnet@gmail.com
+    email: aline.fquadros@outlook.com
     #web: https://www.wowthemes.net
     twitter: https://twitter.com/aline_quadros
     description: "I have some stories to tell"
@@ -30,7 +30,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-archives
-    
+
 # Archives
 jekyll-archives:
   enabled:
@@ -38,11 +38,11 @@ jekyll-archives:
   layout: archive
   permalinks:
     category: '/category/:name/'
-    
-# Pagination 
+
+# Pagination
 paginate: 6
 paginate_path: /page:num/
-    
+
 # Other
 markdown: kramdown
 
