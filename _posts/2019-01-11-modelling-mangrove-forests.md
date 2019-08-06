@@ -6,11 +6,11 @@ categories: [ mangroves, data science, ecology, publications ]
 image: assets/images/mangrove.jpg
 featured: true
 hidden: true
+beforetoc: "How a combination of PLS-R and PCA helped me to predict and visualize how biomass production may change depending on the vegetation features"
+toc: true
 ---
 
-I'll show you how a combination of PLS-R and PCA helped me to predict 
-
-But first things first: Have you been to a mangrove? 
+Have you been to a mangrove? 
 Mangroves are forests having an identity crisis: 
 In case you are wondering, it is actually very difficult to be a terrestrial plant in the marine environment. That's because life (as we know it) is based on water, and fr
 
@@ -33,6 +33,8 @@ How can this model be used? Ideally, . We might not be there yet, because, as I 
 
 But is this helpful? YESSS because measuring trees takes a few hours or a few days (depending on forest size, acessibility, ect.). But estimating the annual biomass production, takes at least a year. And understanding biomass production is crucial  So that's why I started looking into this in the first place: Can we obtain more data more quickly, and use a model to predict Well, I hope . Because science is always auto-correcting itself, and we learn a little bit with every new model, table, dataset, chart that comes around.
 
+
+Info.
 
 
  <span class="spoiler">I just love mangroves</span>
