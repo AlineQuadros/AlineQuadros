@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "Using NLP and d"
+title:  "Predicting the effects of global warming on the mountains of Austria"
 author: Aline
-categories: [ NLP, data-science ]
+categories: [ ecology, data-science ]
 image: assets/images/mountains-austria.jpg
 featured: false
 hidden: false
-beforetoc: "Predicting effects of global warming on the mountains of Austria"
+beforetoc: "Temperate mountains are "
 toc: true
 ---
 
@@ -14,7 +14,7 @@ toc: true
 
 The question was:
 
-> What aspects of mangrove ecology have been studied and how has it changed over the years?
+> ?
 
 
 
