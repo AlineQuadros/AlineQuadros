@@ -5,10 +5,9 @@ author: Aline
 categories: [ data-science, dataviz ]
 image: assets/images/HK-waters.jpg
 toc: true
-beforetoc: "The health or quality of an environment is accessed by monitoring multiple features. PCAs can help to detect and visualize trends over time "
+beforetoc: "The health or quality of an environment is accessed by monitoring multiple features. PCAs can help to detect and visualize trends over time"
 featured: false
 hidden: true
-toc: true
 ---
 
 
@@ -23,8 +22,6 @@ How have I approached it?
 
 Most people involved with data science know PCA (principal component analysis) as a method of unsupervised learning. It is also used for dimensionality reduction. But particularly,
 I think PCAs are powerful tools for dataviz.
-
-
 
 
 Some code and useful libraries/packages that helped me (in R)
