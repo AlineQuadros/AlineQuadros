@@ -44,21 +44,22 @@ Why did I choose to use PLS-R? Well PLS-R is __a fantastic tool for anyone deali
 Basically, the steps needed to apply a PLS-R to your data are:
 
 
-<li> Organize the features dataset
-<li> Organize the response dataset (PLS-R in <a href="https://github.com/gastonstat/plsdepot">package plsdepot</a> can handle univariate and multivariate responses)
-<li> Apply normalization to your data, since biological traits come in a variety of scales (cm, ind/m2, mm, counts, etc.)
-<li> Use a PCA with the features dataset to check how they are related (I mean, the PLS-R is useless if there's no meaningful relationships between your predictors)
-<li> Run the PLS-R with cross-validation
-<li> Predict responses for new data using the best model
+* Organize the features dataset
+* Organize the response dataset (PLS-R in <a href="https://github.com/gastonstat/plsdepot">package plsdepot</a> can handle univariate and multivariate responses)
+* Apply normalization to your data, since biological traits come in a variety of scales (cm, ind/m2, mm, counts, etc.)
+* Use a PCA with the features dataset to check how they are related (I mean, the PLS-R is useless if there's no meaningful relationships between your predictors)
+* Run the PLS-R with cross-validation
+* Predict responses for new data using the best model  
+
 
 The PCA step of this analysis really surprised me. Of course, I was expecting to find some structure in the data since the cross-correlation between the tree features is well known, but I never thought the PCA was going to show me the development (or **ecological sucession**) of the mangrove sites so clearly. The results are illustrated here:
 
 
-<img src="/AlineQuadros/assets/images/development.png">
+<img src="/AlineQuadros/assets/images/development.png", width = 500px>
 
 
 
-> Results of a PCA analysis depicting the development (or succession) of the mangroves of the Ajuruteua. Ten features were used to ordinate the sites (black dots), corresponding to five features of each mangrove plant, *Rhizophora mangle* (Rm) and *Avicennia germinans* (Ag). In the top-right set we see the sites composed of a huge density of very small thin individuals (actually, species of *Avicennia* often form monospecific stands of dwarf trees like these). From the lower-right to the upper-left, we see the transition from young sites to mature sites, and the forest changes are indicated by the arrows. "Young" sites are dominated by *Avicennia germinans* (high relative density of this species). As the forest transitions to "intermediate" sites, the relative density of *Avicennia germinans* decreases (the sites become mixed), and the tree size is bigger (diameter and height). In the "mature" sites, *Rhizophora mangle* dominates and its basal area is larger, indicating a higher density of large trees.
+> Results of a PCA analysis depicting the development (or succession) of the mangroves of the Ajuruteua. Ten features were used to ordinate the sites (black dots), corresponding to five features of each mangrove plant, *Rhizophora mangle* (Rm) and *Avicennia germinans* (Ag). In the top-right set we see the sites composed of a huge density of very small thin individuals (actually, species of *Avicennia* often form monospecific stands of dwarf trees like these). From the lower-right to the upper-left, we see the transition from young sites to mature sites, and the forest changes are indicated by the arrows. "Young" sites are dominated by *Avicennia germinans* (high relative density of this species). As the forest transitions to "intermediate" sites, the relative density of *Avicennia germinans* decreases (the sites become mixed), and the tree size is bigger (diameter and height). In the "mature" sites, *Rhizophora mangle* dominates and its basal area is larger, indicating a higher density of large trees.  
 
 
 Here's some useful functions to run the analysis with <a href="https://github.com/gastonstat/plsdepot">plsdepot</a> for R:  
@@ -91,7 +92,7 @@ Here's how my best models look like in numbers (i. e., the coefficients):
 
 *Avicennia germinans*:
 
-Model 4 (diameter + height + density + basal area + rel. density)
+Model 4 (diameter + height + density + basal area + rel. density)  
 
 LLAg=0.06247 – 0.01566 X1 + 0.00314 X2 - 0.00154 X3 + 0.14053 X4 + 0.17194 X5
 R-squared = 0.85
@@ -111,7 +112,7 @@ Once equations like these are obtained, we can **predict** the litterfall produc
 sim_sites.mean <- apply(sites_for_sim, 2, mean,  na.rm = TRUE)
 sim_sites.cov <- cov(sites_for_sim, method="pearson")
 
-#Make new random data based on the calculated biometry info. each species
+# Make new random data based on the calculated biometry info. each species
 #The MASS package allows for the calculation of correlated/covarying random
 #numbers using this information.
 require(MASS)
@@ -120,7 +121,6 @@ set.seed(1)
 n <- 5000
 
 new.sites_sim <- mvrnorm(n, sim_sites.mean, sim_sites.cov, empirical=TRUE)
-
 ```
 
 How can this model be used? Ideally, we could visit a few mangrove stands, collect data from a few trees (species ID, height, diameter), and collect data about how the trees are distributed within each stand (density and basal area). Feeding this data into the model, __we could predict how much biomass this stand will produce in a year__
