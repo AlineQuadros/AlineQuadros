@@ -14,29 +14,37 @@ toc: false
 
 Mangroves are fascinating coastal ecosystems, that harbor
 
-Well, unlike tropical or temperate forests, mangroves are not well studied so there's a lot we don't know about them. In 2017 I undertook a one-year long project to fill some gaps, and this post has a brief presentation of one of its outcomes. The full paper containing the results
+Well, unlike tropical or temperate forests, mangroves are not well studied so there's a lot we don't know about them. In 2017 I undertook a one-year long project to fill some gaps, and this post has a brief presentation of one of its outcomes. The full paper containing the results is this:
 
 ____
 2018. *Modelling of mangrove annual leaf litterfall with emphasis on the role of
-vegetation structure.*   
+vegetation structure.*  
+
 by Aline Ferreira Quadros, Inga Nordhaus, Hauke Reuter, Martin Zimmer
+
 Published in <a href="https://doi.org/10.1016/j.ecss.2018.12.012">Estuarine, Coastal and Shelf Science 218, 292–299</a>
+
 ____
 
+## Background  
 
-Initially, my task was to review published and unpublished papers (basically, a manual text-mining, you can read more about it <a href="https://alinequadros.github.io/AlineQuadros/playing-data-detective/">in this post</a>) and extract this information to a structured dataset of traits (which you can access here:<a href="https://doi.org/10.3897/BDJ.5.e22089">Dataset of "true mangroves" plant species traits</a>).
+
+Initially, my task was to review published and unpublished papers (basically, a manual text-mining, you can read more about it <a href="https://alinequadros.github.io/AlineQuadros/playing-data-detective/">in this post</a>) and extract this information to a structured dataset of traits (which you can access here: <a href="https://doi.org/10.3897/BDJ.5.e22089">Dataset of "true mangroves" plant species traits</a>).
 
 
 >__Traits__ are quantitative and qualitative features of living beings that help researchers to model the ecology and behavior of species, and are extremely useful in **quantitative ecology** these days.
 
 
-While I was doing the reviews, I found two interesting sets of studies about the mangroves of Ajuruteua (north of Brazil). One set contained studies about the **vegetation structure** of mangrove stands (tree height, diameter, density, etc.), and another set had estimates of the litterfall production of these and other mangrove sites. Some studies even contained both information (the list of studies is at the end of this post).
+While I was doing the reviews, I found two interesting sets of studies about the mangroves of Ajuruteua (north of Brazil). One set contained studies about the **vegetation structure** of mangrove stands (tree height, diameter, density, etc.), and another set had estimates of the litterfall production of these and other mangrove sites. Some studies even contained both information (the list of studies is at the end of this post). While most studies explained the distribution of litterfall along the year, based on climatic features, I noticed that none attempted to
+
+### Can we predict the annual litterfall of a given mangrove site, just by knowing the features of the vegetation?   
+#### Can we predict the annual litterfall of a given mangrove site, just by knowing the features of the vegetation?
 
 
-Well, but why is it important to study these things in the first place? Litterfall is a big component (and a proxy) of the annual aboveground production of a forest, and this information is used to track how fast (and efficiently) the forest is growing, the amount of carbon and important nutrients that is made available to all trophic levels
+Well, but why would be important to predict annual litterfall the first place? Litterfall is a big component (and a proxy) of the annual aboveground production of a forest, and this information is used to track how fast (and efficiently) the forest is growing, the amount of carbon and important nutrients that is made available to all trophic levels
 
 
-<img src="/AlineQuadros/assets/images/mangrove_npp.png">
+<img src='/AlineQuadros/assets/images/mangrove_npp.png'>
 
 > Mangroves store huge amounts of carbon in the sediments. This is so special in terms of global ecology that this carbon received a special name: <a href="https://en.wikipedia.org/wiki/Blue_carbon">Blue Carbon</a>. Much of this carbon comes from the freshwater inflow from rivers, but a lot comes from the decomposition of the leaves shed by the trees everyday, __the leaf litterfall__.
 
