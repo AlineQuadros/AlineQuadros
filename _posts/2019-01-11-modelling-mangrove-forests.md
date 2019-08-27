@@ -32,14 +32,14 @@ Well, but why is it important to study these things in the first place? Litterfa
 Could we predict how much biomass a mangrove will produce, if we have basic information on the structure of its trees?
 And _the answer is YES!_ At least is seems to work (you can read the full publication <a href="https://doi.org/10.1016/j.ecss.2018.12.012">here</a>, or <a href=""> send me an email</a> if you don't have access to it.
 
-Why did I choose to use PLS-R? Well PLS-R is __a fantastic tool for anyone dealing with biological data__. That's because, with few exceptions, biological features are usually orthogonal (cross-correlated). That hampers, for instance, the use of more common techniques, such as (multivariate) linear regressions. If PLS is completely new to you (as it was new to me before this project) let me tell you I learned a lot about it by reading Gaston Sanchez's <a href="https://sagaofpls.github.io/"> The Saga of PLS </a>.
+Why did I choose to use PLS-R? Well PLS-R is __a fantastic tool for anyone dealing with biological data__. That's because biological features are usually orthogonal (cross-correlated). That hampers, for instance, the use of more common techniques, such as (multivariate) linear regressions. If PLS is completely new to you (as it was new to me before this project) let me tell you I learned a lot about it by reading Gaston Sanchez's <a href="https://sagaofpls.github.io/"> The Saga of PLS </a>.
 
 Basically, the steps needed to apply a PLS-R to your data are:
 
 <li> Organize the features dataset
 <li> Organize the response dataset (PLS-R in <a href="https://github.com/gastonstat/plsdepot">package plsdepot</a> can handle univariate and multivariate responses)
 <li> Apply normalization to your data, since biological traits come in a variety of scales (cm, ind/m2, mm, counts, etc.)
-<li> Use a PCA with the features dataset to check if there is  (I mean, the PLS-R is useless if there's no meaningful relationships between your predictors)
+<li> Use a PCA with the features dataset to check how they are related (I mean, the PLS-R is useless if there's no meaningful relationships between your predictors)
 <li> Run the PLS-R with cross-validation
 <li> Predict responses for new data using the best model
 
@@ -47,7 +47,8 @@ The PCA step of this analysis really surprised me. Of course, I was expecting to
 
 <img src="/AlineQuadros/assets/images/development.png">
 
-> Results of a PCA analysis depicting the development (or succession) of the mangroves of the Ajuruteua. Ten features were used to ordinate the sites (black dots), corresponding to five features of each mangrove plant, *Rhizophora mangle* (Rm) and *Avicennia germinans* (Ag). In the top-right set we see the sites composed of a huge density of very small thin individuals (actually, species of *Avicennia* often form monospecific stands of dwarf trees like these). From the lower-right to the upper-left, we see the transition from young sites to mature sites, and the forest changes are indicated by the arrows. "Young" sites are dominated by *Avicennia germinans* (high relative density of this species). As the forest transitions to "intermediate" sites, the relative density of *Avicennia germinans* decreases (the sites become mixed), and the tree size is bigger (diameter and height). In the "mature" sites, *Rhizophora mangle* dominates and its basal area is larger, indicating a higher density of large trees.
+
+>Results of a PCA analysis depicting the development (or succession) of the mangroves of the Ajuruteua. Ten features were used to ordinate the sites (black dots), corresponding to five features of each mangrove plant, *Rhizophora mangle* (Rm) and *Avicennia germinans* (Ag). In the top-right set we see the sites composed of a huge density of very small thin individuals (actually, species of *Avicennia* often form monospecific stands of dwarf trees like these). From the lower-right to the upper-left, we see the transition from young sites to mature sites, and the forest changes are indicated by the arrows. "Young" sites are dominated by *Avicennia germinans* (high relative density of this species). As the forest transitions to "intermediate" sites, the relative density of *Avicennia germinans* decreases (the sites become mixed), and the tree size is bigger (diameter and height). In the "mature" sites, *Rhizophora mangle* dominates and its basal area is larger, indicating a higher density of large trees.
 
 
 Here's some useful functions to run the analysis with <a href="https://github.com/gastonstat/plsdepot">plsdepot</a> for R:
@@ -77,13 +78,19 @@ plot(pls1_model)
 ```
 
 Here's how my best models look like in numbers (i. e., the coefficients):
+
 **Avicennia germinans**:
+
 Model 4 (diameter + height + density + basal area + rel. density)
+
 LLAg=0.06247 – 0.01566 X1 + 0.00314 X2 - 0.00154 X3 + 0.14053 X4 + 0.17194 X5
 R-squared = 0.85
+
 **Avicennia germinans**:
+
 Model 4 diameter + height + density + basal area + rel. density
 LLRm = −1.9959 + 0.0721 X1 + 0.9180 X2 + 0.0301 X3 - 0.4701 X4 + 0.2119 X5
+
 R-squared = 0.66
 
 Once equations like these are obtained, we can **predict** the litterfall production of new sites that contain these two species, as long as we have the same features and species. Because I didn't have additional data to use with my models, I created a set of **artificial data** to experiment with my models. Here's how I did that:
@@ -112,6 +119,30 @@ How can this model be used? Ideally, we could visit a few mangrove stands, colle
 But is this helpful? YESSS because measuring, identifying , and counting trees takes a few hours or a few days (depending on forest size, accessibility, etc.). But estimating the annual biomass production takes __at least an year__. And understanding biomass production is crucial  So that's why I started looking into this in the first place: Can we obtain more data more quickly, and use a model to predict Well, I hope . Because science is always auto-correcting itself, and we learn a little bit with every new model, table, dataset, chart that comes around.
 
 We might not be there yet, because, as I mentioned above, this was the first attempt to. Ideally, once a robust model is stablished, and the coefficients for more species, we could go to a mangrove forest, measure some trees (width and height, density, basal area) and predict how much .
+
+**References**
+List of studies
+Abreu M.M.O. et al. 2006. Analysis of floristic composition and structure in a fragment of terra firme forest and an adjacent mangrove stand on Ajuruteua peninsula, Bragança, Pará. Boletim do Museu Paraense Emílio Goeldi 2: 27–34.
+
+Fernandes, M.E.B., Nascimento, A.A.M., Carvalho, M.L., 2007. Estimativa da produçanual
+de serapilheira dos bosques de mangue no Furo Grande, Bragança-Pará. Rev. Árvore
+31, 949–958.
+
+Mehlig U et al. 2010. Mangrove Vegetation of the Caeté Estuary. – In: Saint-Paul, U. and Schneider, H. (ed.), Mangrove Dynamics and Management in North Brazil. Ecological Studies, Springer, pp. 71–107.
+
+Mehlig U. 2001. Aspects of tree primary production in an equatorial mangrove forest in Brazil. ZMT Contributions vol 14. PhD thesis, University of Bremen, Bremen. 155 p.
+
+Menezes MPM et al. 2003. Annual growth rings and long-term growth patterns of mangrove trees from the Braganca peninsula, North Brazil. Wetlands Ecology and Management 11: 233–242.
+
+Menezes MPM. 2006. Investigations of mangrove forest dynamics in Amazonia, North Brazil. PhD thesis, University of Bremen, Bremen.
+
+Pereira MVS. 2005. Análise da estrutura florística de “bosques de Avicennia” na península de Ajuruteua, Bragança, Pará. Thesis, University of Pará, Bragança.
+
+Reise A. 1999. Untersuchungen zum Streufall und Streuumsatz als Basis zur Charakterisierung des Stoffflusses in verschieden strukturierten Mangroven waldern Braganças/Nordostbrasiliens. Diploma thesis, University of Lüneburg, Lüneburg.
+
+Reise A. 2003. Estimates of biomass and productivity in fringe mangroves on North-Brazil. PhD thesis, University of Bremen, ZMT Contribution 16, Bremen.
+
+Seixas JAS et al. 2006. Análise estrutural da vegetação arbórea dos mangues no Furo Grande, Bragança-Pará. Boletim do Museu Paraense Emílio Goeldi Ciências Naturais 1: 61–69.
 
 
  <span class="spoiler">Thank you for reading it</span>
