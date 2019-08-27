@@ -14,7 +14,7 @@ toc: false
 
 Mangroves are fascinating coastal ecosystems, that harbor
 
-Well, unlike tropical or temperate forests, mangroves are not well studied so there's a lot we don't know about them. In 2017 I undertook a one-year long project to fill some gaps, and this post has a brief discussion of one of it's outcomes.
+Well, unlike tropical or temperate forests, mangroves are not well studied so there's a lot we don't know about them. In 2017 I undertook a one-year long project to fill some gaps, and this post has a brief presentation of one of its outcomes.
 
 Initially, my task was to review published and unpublished papers (basically, a manual text-mining, you can read more about it <a href="https://alinequadros.github.io/AlineQuadros/playing-data-detective/">in this post</a>) and extract this information to
 
@@ -22,22 +22,33 @@ Initially, my task was to review published and unpublished papers (basically, a 
 
 While I was doing the reviews, I found two interesting sets of studies. One set contained studies about the **vegetation structure** of mangrove stands (tree height, diameter, density, etc), and another set had estimates of their annual litterfall production. Some studies even contained both information (the list of studies is at the end of this post).
 
-Well, . Litterfall is a big component (and a proxy) of the annual aboveground
+Well, but why is it important to study these things in the first place? Litterfall is a big component (and a proxy) of the annual aboveground
+
 <img src="/AlineQuadros/assets/images/mangrove_npp.png">
-> Mangroves store huge amounts of carbon in the sediments. This is so special in terms of global ecology that it <a href="https://en.wikipedia.org/wiki/Blue_carbon">Blue Carbon</a>. Much of this carbon comes from the freshwater inflow from rivers, but a lot comes from the decomposition of the leaves shed by the trees everyday, __the leaf litterfall__. 
+
+> Mangroves store huge amounts of carbon in the sediments. This is so special in terms of global ecology that this carbon received a special name: <a href="https://en.wikipedia.org/wiki/Blue_carbon">Blue Carbon</a>. Much of this carbon comes from the freshwater inflow from rivers, but a lot comes from the decomposition of the leaves shed by the trees everyday, __the leaf litterfall__.
 
 
 Could we predict how much biomass a mangrove will produce, if we have basic information on the structure of its trees?
-And __the answer is YES!__ At least is seems to work (you can read the full publication <a href="https://doi.org/10.1016/j.ecss.2018.12.012">here</a>, or <a href=""> send me an email</a> if you don't have access to it.
+And _the answer is YES!_ At least is seems to work (you can read the full publication <a href="https://doi.org/10.1016/j.ecss.2018.12.012">here</a>, or <a href=""> send me an email</a> if you don't have access to it.
 
-Why did I choose to use PLS-R? Well PLS-R is a fantastic tool for anyone dealing with biological data. That's because, with few exceptions, biological features are usually orthogonal (cross-correlated). That hampers, for instance, the use of more common techniques, such as (multivariate) linear regressions. If PLS is completely new to you (as it was new to me before this project) let me tell you I learned a lot about it by reading Gaston Sanchez's <a href="https://sagaofpls.github.io/"> The Saga of PLS </a>.
+Why did I choose to use PLS-R? Well PLS-R is __a fantastic tool for anyone dealing with biological data__. That's because, with few exceptions, biological features are usually orthogonal (cross-correlated). That hampers, for instance, the use of more common techniques, such as (multivariate) linear regressions. If PLS is completely new to you (as it was new to me before this project) let me tell you I learned a lot about it by reading Gaston Sanchez's <a href="https://sagaofpls.github.io/"> The Saga of PLS </a>.
 
-Basically, the steps to apply a PLS-R to your data are:
+Basically, the steps needed to apply a PLS-R to your data are:
 
-1) Organize the features dataset (containing the
-2) Organize the response dataset (PLS-R in <a href="https://github.com/gastonstat/plsdepot">package plsdepot</a> can handle univariate and multivariate responses)
-3) Apply normalization to your data, since biological traits come in a variety of scales (cm, ind/m2, mm, counts, etc.)
-4) Run the PLS-R with cross-validation
+<li> Organize the features dataset
+<li> Organize the response dataset (PLS-R in <a href="https://github.com/gastonstat/plsdepot">package plsdepot</a> can handle univariate and multivariate responses)
+<li> Apply normalization to your data, since biological traits come in a variety of scales (cm, ind/m2, mm, counts, etc.)
+<li> Use a PCA with the features dataset to check if there is  (I mean, the PLS-R is useless if there's no meaningful relationships between your predictors)
+<li> Run the PLS-R with cross-validation
+<li> Predict responses for new data using the best model
+
+The PCA step of this analysis really surprised me. Of course, I was expecting to find some structure in the data since the cross-correlation between the tree features is well known, but I never thought the PCA was going to show me the development (or **ecological sucession**) of the mangrove sites so clearly. The results are illustrated in this picture:
+
+<img src="/AlineQuadros/assets/images/development.png">
+
+> Results of a PCA analysis depicting the development (or succession) of the mangroves of the Ajuruteua. Ten features were used to ordinate the sites (black dots), corresponding to five features of each mangrove plant, *Rhizophora mangle* (Rm) and *Avicennia germinans* (Ag). In the top-right set we see the sites composed of a huge density of very small thin individuals (actually, species of *Avicennia* often form monospecific stands of dwarf trees like these). From the lower-right to the upper-left, we see the transition from young sites to mature sites, and the forest changes are indicated by the arrows. "Young" sites are dominated by *Avicennia germinans* (high relative density of this species). As the forest transitions to "intermediate" sites, the relative density of *Avicennia germinans* decreases (the sites become mixed), and the tree size is bigger (diameter and height). In the "mature" sites, *Rhizophora mangle* dominates and its basal area is larger, indicating a higher density of large trees.
+
 
 Here's some useful functions to run the analysis with <a href="https://github.com/gastonstat/plsdepot">plsdepot</a> for R:
 ```
@@ -65,19 +76,18 @@ mod.VIP(X=X, Y=y, algorithm=mod.SIMPLS, A=2, cutoff=1)
 plot(pls1_model)
 ```
 
+Here's how my best models look like in numbers (i. e., the coefficients):
+**Avicennia germinans**:
+Model 4 (diameter + height + density + basal area + rel. density)
+LLAg=0.06247 – 0.01566 X1 + 0.00314 X2 - 0.00154 X3 + 0.14053 X4 + 0.17194 X5
+R-squared = 0.85
+**Avicennia germinans**:
+Model 4 diameter + height + density + basal area + rel. density
+LLRm = −1.9959 + 0.0721 X1 + 0.9180 X2 + 0.0301 X3 - 0.4701 X4 + 0.2119 X5
+R-squared = 0.66
 
-Once the model is obtained, we can **predict** the litterfall production of new sites that contain these two species. Because I didn't have additional data to use with my models, I created a set of **artificial data** to experiment with my models.
+Once equations like these are obtained, we can **predict** the litterfall production of new sites that contain these two species, as long as we have the same features and species. Because I didn't have additional data to use with my models, I created a set of **artificial data** to experiment with my models. Here's how I did that:
 
-```
-# Run a PCA with the same predictor variables used in the PLS-r
-pca1<- prcomp(X, center = TRUE, scale = TRUE, retx=TRUE)
-biplot(pca1,  xlim=c(-0.8, 0.8), ylim=c(-0.8, 0.8))
-summary(pca1)
-
-
-```
-
-Finally
 
 ```
 #sim_sites.med
