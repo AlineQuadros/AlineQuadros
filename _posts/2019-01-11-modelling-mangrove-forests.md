@@ -14,19 +14,19 @@ toc: false
 
 Mangroves are fascinating coastal ecosystems, that harbor
 
-Well, unlike tropical or temperate forests, mangroves are not well studied so there's a lot we don't know about them. In 2017 I undertook a one-year long project to fill some gaps, and this post has a brief presentation of one of its outcomes.
+Well, unlike tropical or temperate forests, mangroves are not well studied so there's a lot we don't know about them. In 2017 I undertook a one-year long project to fill some gaps, and this post has a brief presentation of one of its outcomes. The full paper containing the results
 
 
-Initially, my task was to review published and unpublished papers (basically, a manual text-mining, you can read more about it <a href="https://alinequadros.github.io/AlineQuadros/playing-data-detective/">in this post</a>) and extract this information to a strucured dataset.
+Initially, my task was to review published and unpublished papers (basically, a manual text-mining, you can read more about it <a href="https://alinequadros.github.io/AlineQuadros/playing-data-detective/">in this post</a>) and extract this information to a structured dataset of traits (which you can access here:<a href="https://doi.org/10.3897/BDJ.5.e22089">Dataset of "true mangroves" plant species traits</a>).
 
 
->__Traits__ are quantitative and qualitative features of living beings that help biologists to model the ecology, behavior, and are extremely useful in **quantitative ecology** these days.
+>__Traits__ are quantitative and qualitative features of living beings that help researchers to model the ecology and behavior of species, and are extremely useful in **quantitative ecology** these days.
 
 
-While I was doing the reviews, I found two interesting sets of studies. One set contained studies about the **vegetation structure** of mangrove stands (tree height, diameter, density, etc), and another set had estimates of their annual litterfall production. Some studies even contained both information (the list of studies is at the end of this post).
+While I was doing the reviews, I found two interesting sets of studies about the mangroves of Ajuruteua (north of Brazil). One set contained studies about the **vegetation structure** of mangrove stands (tree height, diameter, density, etc.), and another set had estimates of the litterfall production of these and other mangrove sites. Some studies even contained both information (the list of studies is at the end of this post).
 
 
-Well, but why is it important to study these things in the first place? Litterfall is a big component (and a proxy) of the annual aboveground
+Well, but why is it important to study these things in the first place? Litterfall is a big component (and a proxy) of the annual aboveground production of a forest, and this information is used to track how fast (and efficiently) the forest is growing, the amount of carbon and important nutrients that is made available to all trophic levels
 
 
 <img src="/AlineQuadros/assets/images/mangrove_npp.png">
@@ -55,14 +55,14 @@ Basically, the steps needed to apply a PLS-R to your data are:
 The PCA step of this analysis really surprised me. Of course, I was expecting to find some structure in the data since the cross-correlation between the tree features is well known, but I never thought the PCA was going to show me the development (or **ecological sucession**) of the mangrove sites so clearly. The results are illustrated here:
 
 
-<img src="/AlineQuadros/assets/images/development.png", width = 500px>
+<img src="/AlineQuadros/assets/images/development.png", width = 400px>
 
 
 
 > Results of a PCA analysis depicting the development (or succession) of the mangroves of the Ajuruteua. Ten features were used to ordinate the sites (black dots), corresponding to five features of each mangrove plant, *Rhizophora mangle* (Rm) and *Avicennia germinans* (Ag). In the top-right set we see the sites composed of a huge density of very small thin individuals (actually, species of *Avicennia* often form monospecific stands of dwarf trees like these). From the lower-right to the upper-left, we see the transition from young sites to mature sites, and the forest changes are indicated by the arrows. "Young" sites are dominated by *Avicennia germinans* (high relative density of this species). As the forest transitions to "intermediate" sites, the relative density of *Avicennia germinans* decreases (the sites become mixed), and the tree size is bigger (diameter and height). In the "mature" sites, *Rhizophora mangle* dominates and its basal area is larger, indicating a higher density of large trees.  
 
 
-Here's some useful functions to run the analysis with <a href="https://github.com/gastonstat/plsdepot">plsdepot</a> for R:  
+Here's some useful functions to run the analysis with <a href="https://github.com/gastonstat/plsdepot">plsdepot</a> in R:  
 
 ```Python
 library(plsdepot)
@@ -123,10 +123,20 @@ n <- 5000
 new.sites_sim <- mvrnorm(n, sim_sites.mean, sim_sites.cov, empirical=TRUE)
 ```
 
+Here's a visualization of the results, now combining the PCA and the simulation of mangrove sites and prediction of annual litterfall using the PLS-r models:  
+
+
+<img src="/AlineQuadros/assets/images/predicted.png", width = 400px>  
+
+
+>Predicted . Each colored dot corresponds to a simulated site with a given set of mangrove tree features. The color is obtained by predicting the annual litterfall for that given mangrove structure, and then plotting it according to the scale. The black dots show the original sites used to build the PCA.
+
+
 How can this model be used? Ideally, we could visit a few mangrove stands, collect data from a few trees (species ID, height, diameter), and collect data about how the trees are distributed within each stand (density and basal area). Feeding this data into the model, __we could predict how much biomass this stand will produce in a year__
 
 
-But is this helpful? YESSS because measuring, identifying , and counting trees takes a few hours or a few days (depending on forest size, accessibility, etc.). But estimating the annual biomass production takes __at least an year__. And understanding biomass production is crucial  So that's why I started looking into this in the first place: Can we obtain more data more quickly, and use a model to predict Well, I hope . Because science is always auto-correcting itself, and we learn a little bit with every new model, table, dataset, chart that comes around.
+But is this helpful? **YESSS it is!!**  
+Measuring, identifying, and counting trees takes a few hours or a few days (depending on forest size, accessibility, etc.). But estimating the annual biomass production takes __at least an year__. And understanding biomass production is crucial if we want to understand . So that's why I started looking into this in the first place: Can we obtain more data more quickly, and use a model to predict Well, I hope . Because science is always auto-correcting itself, and we learn a little bit with every new model, table, dataset, chart that comes around.
 
 We might not be there yet, because, as I mentioned above, this was the first attempt to. Ideally, once a robust model is stablished, and the coefficients for more species, we could go to a mangrove forest, measure some trees (width and height, density, basal area) and predict how much .
 
