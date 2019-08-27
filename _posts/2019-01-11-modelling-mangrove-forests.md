@@ -16,6 +16,13 @@ Mangroves are fascinating coastal ecosystems, that harbor
 
 Well, unlike tropical or temperate forests, mangroves are not well studied so there's a lot we don't know about them. In 2017 I undertook a one-year long project to fill some gaps, and this post has a brief presentation of one of its outcomes. The full paper containing the results
 
+____
+2018. *Modelling of mangrove annual leaf litterfall with emphasis on the role of
+vegetation structure.*   
+by Aline Ferreira Quadros, Inga Nordhaus, Hauke Reuter, Martin Zimmer
+Published in <a href="https://doi.org/10.1016/j.ecss.2018.12.012">Estuarine, Coastal and Shelf Science 218, 292–299</a>
+____
+
 
 Initially, my task was to review published and unpublished papers (basically, a manual text-mining, you can read more about it <a href="https://alinequadros.github.io/AlineQuadros/playing-data-detective/">in this post</a>) and extract this information to a structured dataset of traits (which you can access here:<a href="https://doi.org/10.3897/BDJ.5.e22089">Dataset of "true mangroves" plant species traits</a>).
 
@@ -54,9 +61,7 @@ Basically, the steps needed to apply a PLS-R to your data are:
 
 The PCA step of this analysis really surprised me. Of course, I was expecting to find some structure in the data since the cross-correlation between the tree features is well known, but I never thought the PCA was going to show me the development (or **ecological sucession**) of the mangrove sites so clearly. The results are illustrated here:
 
-
 <img src="/AlineQuadros/assets/images/development.png", width = 400px>
-
 
 
 > Results of a PCA analysis depicting the development (or succession) of the mangroves of the Ajuruteua. Ten features were used to ordinate the sites (black dots), corresponding to five features of each mangrove plant, *Rhizophora mangle* (Rm) and *Avicennia germinans* (Ag). In the top-right set we see the sites composed of a huge density of very small thin individuals (actually, species of *Avicennia* often form monospecific stands of dwarf trees like these). From the lower-right to the upper-left, we see the transition from young sites to mature sites, and the forest changes are indicated by the arrows. "Young" sites are dominated by *Avicennia germinans* (high relative density of this species). As the forest transitions to "intermediate" sites, the relative density of *Avicennia germinans* decreases (the sites become mixed), and the tree size is bigger (diameter and height). In the "mature" sites, *Rhizophora mangle* dominates and its basal area is larger, indicating a higher density of large trees.  
@@ -88,22 +93,22 @@ mod.VIP(X=X, Y=y, algorithm=mod.SIMPLS, A=2, cutoff=1)
 plot(pls1_model)
 ```
 
-Here's how my best models look like in numbers (i. e., the coefficients):
+Here's how my best models look like in numbers (i. e., the coefficients). The model of *Rhizophora mangle* is not nearly as good as the one for *Avicennia germinans*. I discuss the possible reasons for that in the paper (*spoiler alert:* I needed mora data).
 
-*Avicennia germinans*:
+*Avicennia germinans* (R-squared = 0.85):
 
 Model 4 (diameter + height + density + basal area + rel. density)  
 
 LLAg=0.06247 – 0.01566 X1 + 0.00314 X2 - 0.00154 X3 + 0.14053 X4 + 0.17194 X5
 R-squared = 0.85
 
-*Rhizophora mangle*:
+*Rhizophora mangle* (R-squared = 0.66):
 
 Model 4 diameter + height + density + basal area + rel. density
 LLRm = −1.9959 + 0.0721 X1 + 0.9180 X2 + 0.0301 X3 - 0.4701 X4 + 0.2119 X5
 
-R-squared = 0.66
 
+Cool, huh?  
 Once equations like these are obtained, we can **predict** the litterfall production of new sites that contain these two species, as long as we have the same features and species. Because I didn't have additional data to use with my models, I created a set of **artificial data** to experiment with my models. Here's how I did that:
 
 
