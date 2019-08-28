@@ -8,17 +8,16 @@ comments: false
 <div class="row justify-content-between">
 <div class="col-md-8 pr-5">
 
-<p>
+### Ecosystem ecology
 Modelling of mangrove annual leaf litterfall with emphasis on the role of vegetation structure
-*We used PLS-regression to predict the annual production of mangrove forests (in terms of leaf litterfall), and </i>
+*We used PLS-regression to predict the annual production of mangrove forests (in terms of leaf litterfall), and
+
+Aboveground macrodetritivores and belowground soil processes: Insights on species redundancy  
 
 Dataset of "true mangroves" plant species traits
 
-
 A Space-For-Time approach to study the effects of increasing temperature on leaf litter decomposition under natural conditions
-
-
-Aboveground macrodetritivores and belowground soil processes: Insights on species redundancy  
+Dataset of "true mangroves" plant species traits
 
 Litter traits and palatability to detritivores: a case study across bio-geographical boundaries
 
@@ -40,7 +39,6 @@ Growth curve of Balloniscus glaber from Parque Estadual de Itapuã, Rio Grande d
 
 
 
-</p>
 
 
 </div>
