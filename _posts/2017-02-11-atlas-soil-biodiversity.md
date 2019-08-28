@@ -6,7 +6,7 @@ categories: [ ecology, woodlice ]
 image: assets/images/soil_biodiversity2.jpg
 featured: false
 hidden: false
-beforetoc: "The first Global Soil Biodiversity Atlas is out! Tons of illustrations and precious info on these amazing creatures"
+beforetoc: "The first Global Soil Biodiversity Atlas is out! Tons of illustrations and precious info on the amazing soil creatures"
 toc: true
 ---
 
