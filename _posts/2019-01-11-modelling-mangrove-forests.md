@@ -17,13 +17,7 @@ Mangroves are fascinating coastal ecosystems, that harbor
 Well, unlike tropical or temperate forests, mangroves are not well studied so there's a lot we don't know about them. In 2017 I undertook a one-year long project to fill some gaps, and this post has a brief presentation of one of its outcomes. The full paper containing the results is this:
 
 ____
-2018. *Modelling of mangrove annual leaf litterfall with emphasis on the role of
-vegetation structure.*  
-
-by Aline Ferreira Quadros, Inga Nordhaus, Hauke Reuter, Martin Zimmer
-
-Published in <a href="https://doi.org/10.1016/j.ecss.2018.12.012">Estuarine, Coastal and Shelf Science 218, 292–299</a>
-
+Aline Ferreira Quadros, Inga Nordhaus, Hauke Reuter, Martin Zimmer. *Modelling of mangrove annual leaf litterfall with emphasis on the role of vegetation structure.* Published in <a href="https://doi.org/10.1016/j.ecss.2018.12.012">Estuarine, Coastal and Shelf Science 218, 292–299 (2018)</a>
 ____
 
 ## Background  
@@ -37,8 +31,7 @@ Initially, my task was to review published and unpublished papers (basically, a 
 
 While I was doing the reviews, I found two interesting sets of studies about the mangroves of Ajuruteua (north of Brazil). One set contained studies about the **vegetation structure** of mangrove stands (tree height, diameter, density, etc.), and another set had estimates of the litterfall production of these and other mangrove sites. Some studies even contained both information (the list of studies is at the end of this post). While most studies explained the distribution of litterfall along the year, based on climatic features, I noticed that none attempted to
 
-### Can we predict the annual litterfall of a given mangrove site, just by knowing the features of the vegetation?   
-#### Can we predict the annual litterfall of a given mangrove site, just by knowing the features of the vegetation?
+#### Can we predict the annual litterfall of a given mangrove site, just by knowing the features of the vegetation?   
 
 
 Well, but why would be important to predict annual litterfall the first place? Litterfall is a big component (and a proxy) of the annual aboveground production of a forest, and this information is used to track how fast (and efficiently) the forest is growing, the amount of carbon and important nutrients that is made available to all trophic levels
@@ -69,7 +62,7 @@ Basically, the steps needed to apply a PLS-R to your data are:
 
 The PCA step of this analysis really surprised me. Of course, I was expecting to find some structure in the data since the cross-correlation between the tree features is well known, but I never thought the PCA was going to show me the development (or **ecological sucession**) of the mangrove sites so clearly. The results are illustrated here:
 
-<img src="/AlineQuadros/assets/images/development.png", width = 400px>
+<img src='/AlineQuadros/assets/images/development.png', width = 400px>
 
 
 > Results of a PCA analysis depicting the development (or succession) of the mangroves of the Ajuruteua. Ten features were used to ordinate the sites (black dots), corresponding to five features of each mangrove plant, *Rhizophora mangle* (Rm) and *Avicennia germinans* (Ag). In the top-right set we see the sites composed of a huge density of very small thin individuals (actually, species of *Avicennia* often form monospecific stands of dwarf trees like these). From the lower-right to the upper-left, we see the transition from young sites to mature sites, and the forest changes are indicated by the arrows. "Young" sites are dominated by *Avicennia germinans* (high relative density of this species). As the forest transitions to "intermediate" sites, the relative density of *Avicennia germinans* decreases (the sites become mixed), and the tree size is bigger (diameter and height). In the "mature" sites, *Rhizophora mangle* dominates and its basal area is larger, indicating a higher density of large trees.  
@@ -101,7 +94,7 @@ mod.VIP(X=X, Y=y, algorithm=mod.SIMPLS, A=2, cutoff=1)
 plot(pls1_model)
 ```
 
-Here's how my best models look like in numbers (i. e., the coefficients). The model of *Rhizophora mangle* is not nearly as good as the one for *Avicennia germinans*. I discuss the possible reasons for that in the paper (*spoiler alert:* I needed mora data).
+Here's how my best models look like in numbers (i. e., the coefficients). The model of *Rhizophora mangle* is not nearly as good as the one for *Avicennia germinans*. I discuss the possible reasons for that in the paper (*spoiler alert:* I needed more data).
 
 *Avicennia germinans* (R-squared = 0.85):
 
@@ -117,44 +110,49 @@ LLRm = −1.9959 + 0.0721 X1 + 0.9180 X2 + 0.0301 X3 - 0.4701 X4 + 0.2119 X5
 
 
 Cool, huh?  
-Once equations like these are obtained, we can **predict** the litterfall production of new sites that contain these two species, as long as we have the same features and species. Because I didn't have additional data to use with my models, I created a set of **artificial data** to experiment with my models. Here's how I did that:
+Once equations like these are obtained, we can **predict** the litterfall production of new sites that contain these two species, as long as we have the same features and species. Because I didn't have additional data to use with my models, I created a set of **artificial data** to experiment with my models.  
+
+There's a cool trick here. In order to create a list of sites that made sense (i. e., had feature values that could actually occur in nature). As I said above, the diameter, height, density, and basal area of trees are highly correlated, and they co-vary within limits of each other. For instance, a stand with 40 m tall trees can't have a mean diameter of 2 cm). So, to generate **artificial but realistic data**, I used the function `mvrnorm()` from `Package MASS`. `mvrnorm()` is a cool and useful function that generates **multivariate data** from a specified multivariate normal distribution. You can find a detailed explanation and examples <a href="https://blog.revolutionanalytics.com/2016/02/multivariate_data_with_r.html">in this very nice post </a>. Here's a simple example:
 
 
 ```Python
-#sim_sites.med
-sim_sites.mean <- apply(sites_for_sim, 2, mean,  na.rm = TRUE)
-sim_sites.cov <- cov(sites_for_sim, method="pearson")
+# calculate the mean value of each feature across sites
+sim_sites.mean <- apply(X, 2, mean,  na.rm = TRUE)
+# calculate the covariance between sites
+sim_sites.cov <- cov(X, method="pearson")
 
-# Make new random data based on the calculated biometry info. each species
-#The MASS package allows for the calculation of correlated/covarying random
-#numbers using this information.
-require(MASS)
 set.seed(1)
-#simulate  sites
+
+#set the number of simulated sites
 n <- 5000
 
+# generate multivariate values based on a given mean and covariance matrix
+require(MASS)
 new.sites_sim <- mvrnorm(n, sim_sites.mean, sim_sites.cov, empirical=TRUE)
 ```
 
 Here's a visualization of the results, now combining the PCA and the simulation of mangrove sites and prediction of annual litterfall using the PLS-r models:  
 
 
-<img src="/AlineQuadros/assets/images/predicted.png", width = 400px>  
+<img src='/AlineQuadros/assets/images/predicted.png'>  
 
 
->Predicted . Each colored dot corresponds to a simulated site with a given set of mangrove tree features. The color is obtained by predicting the annual litterfall for that given mangrove structure, and then plotting it according to the scale. The black dots show the original sites used to build the PCA.
+>Predicted annual leaf litterfall of *Avicennia germinans* and *Rhizophora mangle* (in megagrams of biomass per hectare per year). Each colored dot corresponds to a simulated site with a given set of mangrove tree features. The color is obtained by predicting the annual litterfall for that given mangrove structure, and then plotting it according to the scale. The black dots show the original sites used to build the PCA. The position of each dot (site) in the PCA space indicates the features of that simulated mangrove site.
 
 
-How can this model be used? Ideally, we could visit a few mangrove stands, collect data from a few trees (species ID, height, diameter), and collect data about how the trees are distributed within each stand (density and basal area). Feeding this data into the model, __we could predict how much biomass this stand will produce in a year__
+How can this model be used? Ideally, we could visit a few mangrove stands, collect data from a few trees (species ID, height, diameter), and collect data about how the trees are distributed within each stand (density and basal area). Feeding this data into the model, __we could predict how much biomass this stand will produce in a year__.
 
 
 But is this helpful? **YESSS it is!!**  
-Measuring, identifying, and counting trees takes a few hours or a few days (depending on forest size, accessibility, etc.). But estimating the annual biomass production takes __at least an year__. And understanding biomass production is crucial if we want to understand . So that's why I started looking into this in the first place: Can we obtain more data more quickly, and use a model to predict Well, I hope . Because science is always auto-correcting itself, and we learn a little bit with every new model, table, dataset, chart that comes around.
+Consider that measuring, identifying, and counting trees takes a few hours or a few days (depending on forest size, accessibility, etc.), but estimating the annual biomass production __takes at least an year__. And researchers need to set traps to collect litterfall, visit the mangrove weekly or monthly for an year to empty them, and process the leaves in the laboratory (wash, dry, weight). **That's how annual litterfall is traditionally obtained**. As you can see, this is a lot of work.
+
+And understanding biomass production is crucial if we want to understand nutrient cycling in mangroves and the stability of carbon stocks. So that's why I started looking into this in the first place: Can we obtain more data more quickly, and use a model to predict Well, I hope . Because science is always auto-correcting itself, and we learn a little bit with every new model, table, dataset, chart that comes around.
 
 We might not be there yet, because, as I mentioned above, this was the first attempt to. Ideally, once a robust model is stablished, and the coefficients for more species, we could go to a mangrove forest, measure some trees (width and height, density, basal area) and predict how much .
 
-**References containing the vegetation and litterfall data**
 
+
+**References containing the vegetation and litterfall data:**
 
 ###### Abreu M.M.O. et al. 2006. Analysis of floristic composition and structure in a fragment of terra firme forest and an adjacent mangrove stand on Ajuruteua peninsula, Bragança, Pará. Boletim do Museu Paraense Emílio Goeldi 2: 27–34.
 
@@ -175,6 +173,7 @@ We might not be there yet, because, as I mentioned above, this was the first att
 ###### Reise A. 2003. Estimates of biomass and productivity in fringe mangroves on North-Brazil. PhD thesis, University of Bremen, ZMT Contribution 16, Bremen.
 
 ###### Seixas JAS et al. 2006. Análise estrutural da vegetação arbórea dos mangues no Furo Grande, Bragança-Pará. Boletim do Museu Paraense Emílio Goeldi Ciências Naturais 1: 61–69.
+
 
 
  <span class="spoiler">Thank you for reading it</span>
